@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">Assesment2Mobpro</string>
+    <string name="app_name">Mobpro 2</string>
+    <string name="list_kosong">Belum ada data ban</string>
+    <string name="x_diklik">%1$s diklik!</string>
+    <string name="tambah_ban">Tambah ban</string>
+    <string name="merk">Merk</string>
+    <string name="jenis">Jenis</string>
+    <string name="ukuran">Ukuran</string>
+    <string name="kembali">Kembali</string>
+    <string name="simpan">Simpan</string>
+    <string name="edit_ban">Ubah ban</string>
+    <string name="invalid">Merk , Jenis, dan Ukuran tidak boleh kosong</string>
+    <string name="lainnya">Opsi lainnya</string>
+    <string name="hapus">Hapus data ban</string>
+    <string name="pesan_hapus">Hapus data ban ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
+    <string name="list">Tampilan list</string>
+    <string name="grid">Tampilan grid</string>
 </resources>
