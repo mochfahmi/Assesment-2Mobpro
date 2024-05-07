@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mobpro 2</string>
+    <string name="app_name">List Ban</string>
     <string name="list_kosong">Belum ada data ban</string>
     <string name="x_diklik">%1$s diklik!</string>
     <string name="tambah_ban">Tambah ban</string>
