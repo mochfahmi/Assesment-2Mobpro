@@ -201,12 +201,12 @@ fun FormBan(
             verticalArrangement = Arrangement.spacedBy(1.dp)
         ) {
             val options = listOf(
-                "180/60",
-                "170/60",
-                "160/60",
-                "150/60"
+                "180/60" to "17",
+                "170/60" to "17",
+                "160/60" to "17",
+                "150/60" to "17"
             )
-            options.forEach { option ->
+            options.forEach { (option, ringVelg) ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
@@ -218,13 +218,18 @@ fun FormBan(
                     )
                     Text(
                         text = option,
-                        modifier = Modifier.padding(start = 1.dp),
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
+                    Text(
+                        text = "Ring Velg: $ringVelg\"",
+                        modifier = Modifier.padding(start = 8.dp),
                     )
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun DeleteAction(delete: () -> Unit) {
