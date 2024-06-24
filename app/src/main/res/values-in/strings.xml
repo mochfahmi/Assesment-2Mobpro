@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">List Ban</string>
+    <string name="list_kosong">Belum ada data ban</string>
+    <string name="x_diklik">%1$s diklik!</string>
+    <string name="tambah_ban">Tambah ban</string>
+    <string name="merk">Merk</string>
+    <string name="jenis">Jenis</string>
+    <string name="ukuran">Ukuran</string>
+    <string name="harga">Harga</string>
+    <string name="kembali">Kembali</string>
+    <string name="simpan">Simpan</string>
+    <string name="edit_ban">Ubah ban</string>
+    <string name="invalid">Merk , Jenis, dan Ukuran tidak boleh kosong</string>
+    <string name="lainnya">Opsi lainnya</string>
+    <string name="hapus">Hapus data ban</string>
+    <string name="pesan_hapus">Hapus data ban ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
+    <string name="list">Tampilan list</string>
+    <string name="grid">Tampilan grid</string>
+    <string name="jenis_ban">Jenis Ban :</string>
+    <string name="ukuran_ban">Ukuran Ban :</string>
+    <string name="bagikan_template">Merek Ban : %1$s   Jenis Ban : %2$s   Ukuran Ban : %3$s</string>
+    <string name="share">Bagikan</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">Aplikasi ini dibuat untuk memudahkan pengguna yang sedang mencari ban motor. Aplikasi ini menyediakan beberapa pilihan ban berdasarkan inputan merek dan jenis ban (standar atau racing) yang telah dimasukkan oleh pengguna.</string>
+</resources>

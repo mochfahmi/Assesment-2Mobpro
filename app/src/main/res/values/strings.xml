@@ -1,21 +1,28 @@
 <resources>
     <string name="app_name">List Ban</string>
-    <string name="list_kosong">Belum ada data ban</string>
-    <string name="x_diklik">%1$s diklik!</string>
-    <string name="tambah_ban">Tambah ban</string>
-    <string name="merk">Merk</string>
-    <string name="jenis">Jenis</string>
-    <string name="ukuran">Ukuran</string>
-    <string name="harga">Harga</string>
-    <string name="kembali">Kembali</string>
-    <string name="simpan">Simpan</string>
-    <string name="edit_ban">Ubah ban</string>
-    <string name="invalid">Merk , Jenis, dan Ukuran tidak boleh kosong</string>
-    <string name="lainnya">Opsi lainnya</string>
-    <string name="hapus">Hapus data ban</string>
-    <string name="pesan_hapus">Hapus data ban ini?</string>
-    <string name="tombol_hapus">Hapus</string>
-    <string name="tombol_batal">Batal</string>
-    <string name="list">Tampilan list</string>
+    <string name="list_kosong">There is no tire data yet</string>
+    <string name="x_diklik">%1$s clicked!</string>
+    <string name="tambah_ban">Add tires</string>
+    <string name="merk">Brand</string>
+    <string name="jenis">Type</string>
+    <string name="ukuran">Size</string>
+    <string name="harga">Price</string>
+    <string name="kembali">Back</string>
+    <string name="simpan">Save</string>
+    <string name="edit_ban">Change tires</string>
+    <string name="invalid">Brand, Type and Size cannot be empty</string>
+    <string name="lainnya">More options</string>
+    <string name="hapus">Delete tire data</string>
+    <string name="pesan_hapus">Delete this tire data?</string>
+    <string name="tombol_hapus">Delete</string>
+    <string name="tombol_batal">Cancel</string>
+    <string name="list">List view</string>
     <string name="grid">Tampilan grid</string>
+    <string name="jenis_ban">Grid view</string>
+    <string name="ukuran_ban">Tire Size:</string>
+    <string name="bagikan_template">Merk : %1$s   Tire Type : %2$s   Tire Size : %3$s</string>
+    <string name="share">Share</string>
+    <string name="tentang_aplikasi">About the application</string>
+    <string name="copyright">This application was created to make it easier for users who are looking for motorbike tires. This application provides several tire options based on the brand and type of tire (standard or racing) entered by the user.</string>
+
 </resources>

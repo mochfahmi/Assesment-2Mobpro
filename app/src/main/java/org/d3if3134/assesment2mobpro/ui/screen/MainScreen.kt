@@ -1,11 +1,14 @@
 package org.d3if3134.assesment2mobpro.ui.screen
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,6 +19,9 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -74,22 +80,35 @@ fun MainScreen(navController: NavHostController) {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 actions = {
-                    IconButton(onClick = {
-                        CoroutineScope(Dispatchers.IO).launch {
-                            dataStore.saveLayout(!showList)
+                    Row {
+                        IconButton(onClick = {
+                            CoroutineScope(Dispatchers.IO).launch {
+                                dataStore.saveLayout(!showList)
+                            }
+                        }) {
+                            Icon(
+                                painter = painterResource(
+                                    if ( showList) R.drawable.baseline_grid_view_24
+                                    else R.drawable.baseline_view_list_24
+                                ),
+                                contentDescription = stringResource(
+                                    if ( showList) R.string.grid
+                                    else R.string.list
+                                ),
+                                tint = MaterialTheme.colorScheme.primary
+                            )
                         }
-                    }) {
-                        Icon(
-                            painter = painterResource(
-                                if ( showList) R.drawable.baseline_grid_view_24
-                                else R.drawable.baseline_view_list_24
-                            ),
-                            contentDescription = stringResource(
-                                if ( showList) R.string.grid
-                                else R.string.list
-                            ),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
+                        IconButton(
+                            onClick = {
+                                navController.navigate(Screen.About.route)
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Info,
+                                contentDescription = stringResource(R.string.tentang_aplikasi),
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                        }
                     }
                 }
             )
@@ -165,42 +184,15 @@ fun ScreenContent(showList: Boolean, modifier: Modifier, navController: NavHostC
 
 @Composable
 fun ListItem(ban: Ban, onClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() }
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        Text(
-            text = ban.merk,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = ban.jenis,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-        Text(text = ban.ukuran)
-    }
-}
-
-@Composable
-fun GridItem(ban: Ban, onClick: () -> Unit) {
-    Card (
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() },
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-        ),
-        border = BorderStroke(1.dp, Color.Gray)
+    val context = LocalContext.current
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
             modifier = Modifier
-                .padding(8.dp),
+                .clickable { onClick() }
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
@@ -216,6 +208,69 @@ fun GridItem(ban: Ban, onClick: () -> Unit) {
             )
             Text(text = ban.ukuran)
         }
+        IconButton(
+            onClick = {
+                shareData(
+                    context = context,
+                    massage = context.getString(R.string.bagikan_template, ban.merk, ban.jenis, ban.ukuran).uppercase())
+            },
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            Icon(imageVector = Icons.Default.Share, contentDescription = "")
+        }
+    }
+}
+
+@Composable
+fun GridItem(ban: Ban, onClick: () -> Unit) {
+    val context = LocalContext.current
+    Card (
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+        ),
+        border = BorderStroke(1.dp, Color.Gray)
+    ) {
+            Column(
+                modifier = Modifier
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = ban.merk,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = ban.jenis,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(text = ban.ukuran)
+                Button(
+                    onClick = {
+                        shareData(
+                            context = context,
+                            massage = context.getString(R.string.bagikan_template, ban.merk, ban.jenis, ban.ukuran).uppercase())
+                    },
+                    modifier = Modifier.padding(top = 8.dp)
+                ) {
+                    Icon(imageVector = Icons.Default.Share, contentDescription = "")
+                }
+            }
+        }
+    }
+
+private fun shareData(context: Context, massage: String) {
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, massage)
+    }
+    if(shareIntent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(shareIntent)
     }
 }
 

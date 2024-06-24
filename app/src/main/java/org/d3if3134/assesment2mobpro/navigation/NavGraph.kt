@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import org.d3if3134.assesment2mobpro.ui.screen.AboutScreen
 import org.d3if3134.assesment2mobpro.ui.screen.DetailScreen
 import org.d3if3134.assesment2mobpro.ui.screen.KEY_ID_BAN
 import org.d3if3134.assesment2mobpro.ui.screen.MainScreen
@@ -19,6 +20,9 @@ fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
     ) {
         composable(route = Screen.Home.route) {
             MainScreen(navController)
+        }
+        composable(route = Screen.About.route){
+            AboutScreen(navController)
         }
         composable(route = Screen.FormBaru.route) {
             DetailScreen(navController)

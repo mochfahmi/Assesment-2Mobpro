@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +28,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -158,6 +161,7 @@ private fun getSelectedOptionIndex(ukuran: String): Int {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FormBan(
     merk: String, onMerkChange: (String) -> Unit,
@@ -166,6 +170,9 @@ fun FormBan(
     ukuran: String,
     onUkuranChange: (String) -> Unit
 ) {
+    var isExpanded by remember {
+        mutableStateOf(false)
+    }
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -183,17 +190,43 @@ fun FormBan(
             ),
             modifier = Modifier.fillMaxWidth()
         )
-        OutlinedTextField(
-            value = jenis,
-            onValueChange = { onJenisChange(it) },
-            label = { Text(text = stringResource(id = R.string.jenis)) },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                capitalization = KeyboardCapitalization.Words,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier.fillMaxWidth()
-        )
+
+//      JENIS BAN
+        Text(text = stringResource(id = R.string.jenis_ban))
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, Color.Gray, RoundedCornerShape(4.dp)),
+            verticalArrangement = Arrangement.spacedBy(1.dp)
+        ){
+            val jenisOptions = listOf(
+                "PIRELLI DIABLO ROSSO SPORT",
+                "PIRELLI DIABLO SUPERCORSA",
+                "PIRELLI ANGEL SCOOTER",
+                "CORSA PLATINUM R93",
+                "CORSA PLATINUM R46",
+                "CORSA PLATINUM R26",
+            )
+            jenisOptions.forEach { jenisOption ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    RadioButton(
+                        selected = jenis == jenisOption,
+                        onClick = { onJenisChange(jenisOption) },
+                        colors = RadioButtonDefaults.colors(selectedColor = MaterialTheme.colorScheme.primary)
+                    )
+                    Text(
+                        text = jenisOption,
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
+                }
+            }
+        }
+
+//      UKURAN BAN
+        Text(text = stringResource(id = R.string.ukuran_ban))
         Column(
             modifier = Modifier
                 .fillMaxWidth()
